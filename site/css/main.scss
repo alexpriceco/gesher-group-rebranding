@@ -31,6 +31,7 @@ $lightblue: lighten($blue, 30%);
 $darkblue: darken($blue, 10%);
 
 $gray:   #AAAAAA;
+$lightgray: lighten($gray, 30%);
 $darkgray: darken($gray, 30%);
 
 $white:  #FFFFFF;
@@ -73,6 +74,16 @@ $silver: #DDDDDD;
     background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%), url($url) no-repeat;
     background-size:cover;
 }
+@mixin auto-bg-alt($url) {
+    background: url($url) no-repeat cover;
+    background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%), url($url) no-repeat;
+    background: -webkit-gradient(linear, top, bottom, color-stop(0%, rgba(255,255,255,0)), color-stop(100%, rgba(255,255,255,1))), url($url) no-repeat;
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%), url($url) no-repeat;
+    background: -o-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%), url($url) no-repeat;
+    background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%), url($url) no-repeat;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%), url($url) no-repeat;
+    background-size:cover;
+ }
 
 // Use media queries like this:
 // @include media-query($on-palm) {

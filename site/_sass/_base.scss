@@ -57,18 +57,18 @@ h3 {
     font-size: 1.2em;
     padding: 1.5em 1.5em .5em 1.5em;
 }
-.body-copy {
-    text-align: justify;
-    padding: 0 4em;
-    line-height: 1.2em;
-    font-size: 1.05em;
-}
 hr {
     height:1px;
     border:0;
     width:60%;
     margin: 2em auto;
     background-color: $gray;
+}
+.body-copy {
+    text-align: justify;
+    padding: 0 4em;
+    line-height: 1.2em;
+    font-size: 1.05em;
 }
 nav hr {
     margin-top:1em;
@@ -320,6 +320,12 @@ nav {
     display: none;
     @include ease();
 }
+.result {
+    margin:1em 0;
+    padding:.7em 1em;
+    border-left: .2em solid $gray;
+    background-color:$lightgray;
+}
 
 .bg-img {
     background-color: #B1B8BD;
@@ -440,15 +446,54 @@ nav {
 
 }
 .meet-the-team {
-    background-color:orange;
+    position: relative;
+    .button {
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -100%);
+    }
     .the-team {
-        background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 50%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 50%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: unquote("progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 )"); /* IE6-9 */
+        height:50vw;
+        img {
+            height:25vw;
+            width:25vw;
+            padding:0;
+            margin:0;
+            display: inline-block;
+        }
+        img:nth-of-type(n+4) {
+            margin-top:-4px;
+        }
+        &:before {
+            content: '';
+            position: absolute;
+            width:100vw;
+            height:50vw;
+            top:0; bottom:0;
+            left:0; right:0;
+            background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,.7) 50%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,.7) 50%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,.7) 50%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: unquote("progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 )"); /* IE6-9 */
+        }
     }
 }
-
+.quote {
+    text-align: center;
+    padding:2em;
+}
+.triangle {
+    position: static;
+    z-index: 9999;
+    top:0;
+    left:0;
+    width: 0;
+    height: 0;
+    border-top: 10vw solid $black;
+    border-right: 100vw solid transparent;    
+    margin-top:-40vw;
+}
 
 .disabled,
 .disabled > * {
@@ -457,12 +502,12 @@ nav {
     opacity: 0.5;
 }
 
-
 #join-bottom {
     @include auto-bg('https://images.unsplash.com/photo-1454023989775-79520f04322c?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=9e434433acf7e61b897ee692e51e0a4f');
 }
-#contact-bottom {
-    @include auto-bg('../media/map.png');
+#sponsor-top {
+    height:40vw;
+    @include auto-bg-alt('https://images.unsplash.com/photo-1415889678233-eb900aeee9e1?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=cd762886dbc8210932b8e6fc9e2da724')
 }
 #sponsor-bottom {
     @include auto-bg('https://images.unsplash.com/photo-1445865272827-4894eb9d48de?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=714ab41f0a036f1f27bea64b3db207a8')
@@ -470,6 +515,10 @@ nav {
 #hire-bottom {
     @include auto-bg('https://images.unsplash.com/photo-1454023989775-79520f04322c?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=9e434433acf7e61b897ee692e51e0a4f')
 }
+#contact-bottom {
+    @include auto-bg('../media/map.png');
+}
+
 
 @media all and (min-width: 321px) and (max-width: 768px) {
     * {
