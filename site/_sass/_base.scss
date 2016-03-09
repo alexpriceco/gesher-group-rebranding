@@ -55,7 +55,7 @@ h2 {
 }
 h3 {
     font-size: 1.2em;
-    padding: 1.5em;
+    padding: 1.5em 1.5em .5em 1.5em;
 }
 .body-copy {
     text-align: justify;
@@ -386,6 +386,19 @@ nav {
     width:100vw;
     overflow-x:scroll;
     overflow-y:hidden;
+    h4 {
+        color:$darkwhite;
+        font-family: $serif;
+        font-weight: normal;
+        font-size:1em;
+        -webkit-transition: none;
+        -moz-transition: none;
+        -o-transition: none;
+        transition: none;
+        padding: 0 0 1em 0;
+        text-align: center;
+        font-style: italic;
+    }
     ::-webkit-scrollbar { 
         display: none; 
     }
@@ -398,20 +411,6 @@ nav {
     .member-desc {
         position: absolute;
     }
-    .selected-member-desc {
-        h3 {
-            margin:1.5em 0 0 0;
-            padding:.5em;
-        }
-        .position {
-            margin:0 auto;
-            padding: 0 0 1em 0;
-            font-style: italic;
-            color:$darkwhite;
-            text-align: center;
-        }
-        display:block;
-    }
     > .board-members {
         list-style: none;
         display: block;
@@ -419,20 +418,20 @@ nav {
         overflow-y:hidden;
         overflow-x:auto;
     }
-    .body-copy {
-        margin-bottom: 2em;
-    }
     img {   
         display: inline;
-        width:30vw;
-        height:30vw;
+        width:28vw;
+        height:28vw;
         padding:0;
         margin:0;
     }
     img:not(.selected-member), 
     img:not(.selected-member) > img {
-        opacity: 0.3;
+        opacity: 0.5;
     } 
+}
+.selected-member-desc {
+    display:block;
 }
 .video {
     margin-top:2em;
@@ -441,12 +440,12 @@ nav {
 
 }
 .meet-the-team {
+    background-color:orange;
     .the-team {
         background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
         background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 50%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
         background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 50%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: unquote("progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 )"); /* IE6-9 */
-
     }
 }
 
@@ -460,10 +459,16 @@ nav {
 
 
 #join-bottom {
-    @include auto-bg('https://images.unsplash.com/photo-1451188502541-13943edb6acb?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=892b76bb136c32b4d606b4a4d2f9b39b');
+    @include auto-bg('https://images.unsplash.com/photo-1454023989775-79520f04322c?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=9e434433acf7e61b897ee692e51e0a4f');
 }
 #contact-bottom {
     @include auto-bg('../media/map.png');
+}
+#sponsor-bottom {
+    @include auto-bg('https://images.unsplash.com/photo-1445865272827-4894eb9d48de?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=714ab41f0a036f1f27bea64b3db207a8')
+}
+#hire-bottom {
+    @include auto-bg('https://images.unsplash.com/photo-1454023989775-79520f04322c?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=9e434433acf7e61b897ee692e51e0a4f')
 }
 
 @media all and (min-width: 321px) and (max-width: 768px) {
