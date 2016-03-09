@@ -33,6 +33,9 @@ $darkblue: darken($blue, 10%);
 $gray:   #AAAAAA;
 $darkgray: darken($gray, 30%);
 
+$white:  #FFFFFF;
+$darkwhite: darken($white, 30%);
+
 $aqua:   #7FDBFF;
 $teal:   #39CCCC;
 $olive:  #3D9970;
@@ -46,13 +49,18 @@ $fuchsia:#F012BE;
 $purple: #B10DC9;
 $black:  #111111;
 $silver: #DDDDDD;
-$white:  #FFFFFF;
 
 @mixin ease() {
     -webkit-transition: all 150ms cubic-bezier(0.420, 0.000, 0.580, 1.000);
     -moz-transition: all 150ms cubic-bezier(0.420, 0.000, 0.580, 1.000);
     -o-transition: all 150ms cubic-bezier(0.420, 0.000, 0.580, 1.000);
     transition: all 150ms cubic-bezier(0.420, 0.000, 0.580, 1.000);
+}
+@mixin ease-opacity() {
+    -webkit-transition: opacity 150ms cubic-bezier(0.420, 0.000, 0.580, 1.000);
+    -moz-transition: opacity 150ms cubic-bezier(0.420, 0.000, 0.580, 1.000);
+    -o-transition: opacity 150ms cubic-bezier(0.420, 0.000, 0.580, 1.000);
+    transition: opacity 150ms cubic-bezier(0.420, 0.000, 0.580, 1.000);
 }
 
 @mixin auto-bg($url) {
