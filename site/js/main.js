@@ -1,34 +1,67 @@
-//function to move between different member profiles
+// Move between different member profiles
 function memberSwitch(section) {
+	console.log('running memberSwitch with: '+section);
 	$('#'+section).addClass('selected-member').siblings().removeClass('selected-member');
 
-	console.log('#' + section + '_section');
-
-   $('#' + section + '_section').removeClass('hidden fadeOut').addClass('selected-member-desc fadeIn').bind('oanimationend animationend webkitAnimationEnd', function() {
-      $('#' + section + '_section').removeClass('fadeIn').siblings().addClass('hidden');
-   });
-   $('#' + section + '_section').siblings().addClass('fadeOut').removeClass('selected-member-desc');
+    $('#' + section + '_section').removeClass('hidden fadeOut').addClass('selected-member-desc fadeIn').bind('oanimationend animationend webkitAnimationEnd', function() {
+        $('#' + section + '_section').removeClass('fadeIn').siblings().addClass('hidden');
+    });
+    $('#' + section + '_section').siblings().addClass('fadeOut').removeClass('selected-member-desc');
 	$('.absolute-container').height($('.selected-member-desc').outerHeight());
+	console.log('finished up with: '+section);
 }
 
+// Randomizes member photos
+function randomizeMembers(members) {
+	var firstMember = '';
+
+	// Everyone do the Durstenfeld Shuffle! (randomize members)
+	for (var i = members.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = members[i];
+        members[i] = members[j];
+        members[j] = temp;
+    }
+
+	var membersToShuffle = ($('.random-folks').parent('.meet-the-team').length>0) ? 8 : members.length;
+
+    // Inserts members into page after randomization
+    for (var i = membersToShuffle -1; i >= 0; i--) {
+    	var name = members[i];
+		var toInsert = '<img src="media/'+name+'.jpg" id="'+name+'" class="member" onclick="memberSwitch(\''+name+'\')" />'
+    	if ( i==members.length-1 ) {
+    		firstMember = name;
+    		toInsert = '<img src="media/'+name+'.jpg" id="'+name+'" class="member selected-member" onclick="memberSwitch(\''+name+'\')" />'
+    	}
+        $('.random-folks').append(toInsert);
+    }
+
+    memberSwitch(firstMember);
+}
 
 $(document).ready(function() {
 
-	//navigation
+	var membersList = [ "alexprice", "ryanwong", "amychang", "gethinwade",
+						"ryansexauer", "matthewkrier", "nolanshapiro",
+						"alyssazhen", "maxdownie", "gregorylikhatchev" ];
+
+	// Navigation
 	$('.nav_button').click(function() {
-		$('nav').addClass('fadeIn').removeClass('fadeOut').toggle();
+		if (window.innerWidth < 600) {
+			$('nav:not(.inline-nav)').addClass('fadeIn').removeClass('fadeOut').toggle();
+		}
 	});
 
 	$('.close_nav').click(function() {
-		$('nav').addClass('fadeOut').removeClass('fadeIn');
-		
+		$('nav:not(.inline-nav)').addClass('fadeOut').removeClass('fadeIn');
+
 		setTimeout(function() {
-			$('nav').toggle();
+			$('nav:not(.inline-nav)').toggle();
 		}, 2000);
 	});
 
 
-	//modals
+	// Modals
 	$('.launch_modal.call').click(function() {
 		$('.blur-container').addClass('fadeIn').removeClass('fadeOut').toggle(true);
 		$('.modal.call').addClass('fadeIn').removeClass('fadeOut').toggle(true);
@@ -49,13 +82,9 @@ $(document).ready(function() {
 	});
 
 
-	//board selection
-	$('.member').click(function() {
-		memberSwitch(this.id)
-	})
 	if($('.absolute-container')!==null) {
 		$('.absolute-container').height($('.selected-member-desc').outerHeight());
 	}
 
-
+	randomizeMembers(membersList);
 });
